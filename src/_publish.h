@@ -34,10 +34,24 @@ void register_publish_hooks() {
     data["myName"] = myName;
     data["millis"] = millis();
     data["relayState"] = relayPinState;
-    data["temp1"] = readThermocouple(12, 14,27);
-    data["temp2"] = readThermocouple(12, 26,27);
-    data["temp3"] = readThermocouple(12, 25,27);
-    data["temp4"] = readThermocouple(12, 33,27);
+    double temp1, temp2, temp3, temp4;
+    temp1 = readThermocouple(12, 14,27);
+    temp2 = readThermocouple(12, 26,27);
+    temp3 = readThermocouple(12, 25,27);
+    temp4 = readThermocouple(12, 33,27);
+    if (!isnan(temp1)) {
+      data["temp1"] = temp1;
+    }
+    if (!isnan(temp2)) {
+      data["temp2"] = temp2;
+    }
+    if (!isnan(temp3)) {
+      data["temp3"] = temp3;
+    }
+
+    if (!isnan(temp4)) {
+      data["temp4"] = temp4;
+    }
 
     data["updateInterval"] = PUBLISH_EVERY;
   }, PUBLISH_EVERY);
